@@ -30,11 +30,9 @@ public class EventBusLite {
 
     public void post(String str){
         try {
-            Class clazz = Class.forName(mObj.getClass().toString().substring(6));
+            Class clazz =mObj.getClass();
             Method method = clazz.getMethod("onEvent",String.class);
             method.invoke(mObj,str);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
